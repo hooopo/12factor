@@ -1,7 +1,7 @@
 The Twelve-Factor App
 =====================
 
-Source for the content app running at: http://www.12factor.net/
+Source for the content app running at: http://the12factor.herokuapp.com/
 
 Development
 -----------
@@ -15,6 +15,7 @@ Production deploy
 
     heroku create -s cedar
     git push heroku master
+    heroku config:add GOOGLE_ANALYTICS_KEY=your-google-analytics-key
     heroku open
 
 Meta
