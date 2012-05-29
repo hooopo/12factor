@@ -1,12 +1,12 @@
-Introduction
+简介
 ============
 
-In the modern era, software is commonly delivered as a service: called *web apps*, or *software-as-a-service*.  The twelve-factor app is a methodology for building software-as-a-service apps that:
+在当今时代，软件通常作为一个服务发布： 就是所谓的 *Web应用* 或 *Software-As-A-Service*。这篇 *“Web开发中的十二条军规”* 为构建如下Web应用提供了指导方法：
 
-* Use **declarative** formats for setup automation, to minimize time and cost for new developers joining the project;
-* Have a **clean contract** with the underlying operating system, offering **maximum portability** between execution environments;
-* Are suitable for **deployment** on modern **cloud platforms**, obviating the need for servers and systems administration;
-* **Minimize divergence** between development and production, enabling **continuous deployment** for maximum agility;
-* And can **scale up** without significant changes to tooling, architecture, or development practices.
+* **声明** 标准化的流程文档，来自动搭建应用, 减少新加入项目的成员花费的时间；
+* 和操作系统之间**划清界限**， 在不同执行环境中提供**最大可移植性** ；
+* 容易**部署**到流行的**云平台**上，从而节省服务器和系统管理员；
+* **最小化**开发环境和生产环境之间的差异，从而**持续部署**带来最大的敏捷；
+* 可以在工具、架构和开发实践不发生明显变化的前提下实现**纵向扩展**。
 
-The twelve-factor methodology can be applied to apps written in any programming language, and which use any combination of backing services (database, queue, memory cache, etc).
+“Web开发中的十二条军规” 方法论可以应用到任何语言和后端服务（数据库、消息队列、缓存系统等）所写的Web应用。
