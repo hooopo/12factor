@@ -1,4 +1,4 @@
-Who should read this document?
+谁应该读这份文档？
 ==============================
 
-Any developer building applications which run as a service.  Ops engineers who deploy or manage such applications.
+任何SaaS应用的开发人员；部署和管理此类应用的运维工程师。
