@@ -1,16 +1,21 @@
-## XI. Logs
-### Treat logs as event streams
+## XI. 日志
+### 把日志当成事件流
 
-*Logs* provide visibility into the behavior of a running app.  In server-based environments they are commonly written to a file on disk (a "logfile"); but this is only an output format.
+*日志* 让应用程序的行为变得透明。在基于服务器的运行环境中，通常日志被写到磁盘里德文件（日志文件）里；但这不是唯一的输出格式。
 
-Logs are the [stream](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) of aggregated, time-ordered events collected from the output streams of all running processes and backing services.  Logs in their raw form are typically a text format with one event per line (though backtraces from exceptions may span multiple lines).  Logs have no fixed beginning or end, but flow continously as long as the app is operating.
+日志是[事件流](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/)的聚合。 按照时间顺序把所有运行的进程和后台服务的输出收集起来。原始形态的日志通常是一行（尽管异常的堆栈信息可能有多行）记录一件事的文本。日志没有确定的开始和结束，但会随着应用的运行一直流动。
 
-**A twelve-factor app never concerns itself with routing or storage of its output stream.**  It should not attempt to write to or manage logfiles.  Instead, each running process writes its event stream, unbuffered, to `stdout`.  During local development, the developer will view this stream in the foreground of their terminal to observe the app's behavior.
+**遵循“Web开发十二军规”的应用本身从不考虑如何切分或存储输出的事件流。**
 
-In staging or production deploys, each process' stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.  These archival destinations are not visible to or configurable by the app, and instead are completely managed by the execution environment.  Open-source log routers (such as [Logplex](https://github.com/heroku/logplex) and [Fluent](https://github.com/fluent/fluentd)) are available for this purpose.  
+应用本身不应该考虑如何写或处理日志文件。而是每个运行的进程把事件流输出到`标准输出（stdout）`。在本地开发环境, 开发者通过观察终端里的事件流来监视应用的行为。
 
-The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to a log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility for introspecting an app's behavior over time, including:
+在预发布或生产环境中，每个进程的事件流都会被运行环境捕获，并将其他输出流整理在一起，然后一起发送给一个或多个最终的处理程序，用于查看或是长期存档。这些存档目的对于应用来说不可见也不可配置，而是完全交给程序的运行环境管理。开源工具(比如 [Logplex](https://github.com/heroku/logplex) 和 [Fluent](https://github.com/fluent/fluentd))就是这个用途。
 
-* Finding specific events in the past.
-* Large-scale graphing of trends (such as requests per minute).
-* Active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
+这些事件流可以输出至文件，或者使用tail工具在终端实时观察。最重要的，输出流可以被发送到像[Splunk](http://www.splunk.com/)这样的索引分析系统。或像[Hadoop/Hive](http://hive.apache.org/)这样的通用数据存储系统。这些系统为查看应用的历史活动提供了强大而灵活的功能，包括： 
+
+1. 查找过去的特别事件。
+
+2. 图形化一个大规模的趋势（比如每分钟处理的请求量）
+
+3. 根据自定义的条件实时激活警报（比如每分钟的报错超过某个警戒线）
+
